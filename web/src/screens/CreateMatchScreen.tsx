@@ -79,7 +79,7 @@ export function CreateMatchScreen() {
         totalSpots: parseInt(totalSpots),
       });
 
-      navigate('/');
+      navigate('/home');
     } catch (error) {
       console.error('Error creating match:', error);
     }
@@ -99,7 +99,7 @@ export function CreateMatchScreen() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => navigate('/')}
+              onClick={() => navigate('/home')}
               className="h-10 w-10 text-white hover:bg-white/20"
             >
               <ArrowLeft className="h-5 w-5" />

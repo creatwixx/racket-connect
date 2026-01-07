@@ -27,7 +27,7 @@ export function LoginScreen() {
       await authService.signIn(email, password);
       
       // Navigate to home
-      navigate('/');
+      navigate('/home');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     } finally {

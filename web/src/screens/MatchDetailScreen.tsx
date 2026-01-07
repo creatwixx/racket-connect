@@ -90,7 +90,7 @@ export function MatchDetailScreen() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/home')}
                 className="h-10 w-10 text-white hover:bg-white/20"
               >
                 <ArrowLeft className="h-5 w-5" />
@@ -103,7 +103,7 @@ export function MatchDetailScreen() {
           <div className="flex flex-col items-center justify-center gap-4">
             <AlertCircle className="h-12 w-12 md:h-16 md:w-16 text-destructive" />
             <h2 className="text-xl md:text-2xl font-semibold">Match not found</h2>
-            <Button onClick={() => navigate('/')}>Go Home</Button>
+            <Button onClick={() => navigate('/home')}>Go Home</Button>
           </div>
         </main>
       </div>
