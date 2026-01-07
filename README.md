@@ -6,34 +6,34 @@ A social app for finding padel buddies and organizing matches.
 
 ```
 racket-connect/
-├── mobile/          # Flutter mobile app (iOS & Android)
-├── web/             # React web app (coming soon)
+├── mobile/          # Flutter mobile app (not part of MVP - ignored)
+├── web/             # React web app (main application)
 └── README.md
 ```
 
-## Mobile App (Flutter)
+## Web App (React) - Main Application
 
-The mobile app is built with Flutter and supports iOS and Android.
+The web app is the main application for this MVP demo. It's built with React, TypeScript, Vite, and Tailwind CSS.
 
 ### Setup
 
-See `mobile/README.md` for mobile app setup instructions.
+See `web/README.md` for detailed setup instructions.
 
-### Run Mobile App
+### Quick Start
 
 ```bash
-cd mobile
-flutter pub get
-flutter run
+cd web
+npm install
+npm run dev
 ```
 
-## Web App (React)
+### Deployment
 
-The web app will be built with React (stack TBD).
+The web app is configured for deployment on Railway. See `web/DEPLOYMENT.md` for deployment instructions.
 
-### Setup
+## Mobile App (Flutter)
 
-See `web/README.md` for web app setup instructions (coming soon).
+The mobile app is not part of the MVP and is currently ignored. It may be developed in the future.
 
 ## Features
 
@@ -45,11 +45,18 @@ See `web/README.md` for web app setup instructions (coming soon).
 
 ## Tech Stack
 
-### Mobile
+### Web App (Main)
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Styling
+- **Zustand** - State management
+- **React Router** - Routing
+- **date-fns** - Date formatting
+- **lucide-react** - Icons
+
+### Mobile (Future)
 - **Flutter** - Cross-platform mobile framework
 - **Riverpod** - State management
 - **Material Design 3** - UI components
-
-### Web (Coming Soon)
-- **React** - Web framework
-- Stack TBD
+- *Not part of MVP - development paused*
