@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
-import { Activity, MapPin, Calendar, Clock, Users } from 'lucide-react';
+import { Activity, MapPin, Calendar, Clock, Users, Award } from 'lucide-react';
 import type { PadelMatch } from '../types/match';
 import { authService } from '../services/authService';
 import { Card, CardContent } from './ui/card';
@@ -9,6 +9,26 @@ import { cn } from '@/lib/utils';
 interface MatchCardProps {
   match: PadelMatch;
 }
+
+const SKILL_LEVEL_LABELS: Record<string, string> = {
+  'bronze-low': 'Bronze - Low',
+  'bronze-mid': 'Bronze - Mid',
+  'bronze-high': 'Bronze - High',
+  'silver-low': 'Silver - Low',
+  'silver-mid': 'Silver - Mid',
+  'silver-high': 'Silver - High',
+  'gold': 'Gold',
+};
+
+const SKILL_LEVEL_COLORS: Record<string, string> = {
+  'bronze-low': 'bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400',
+  'bronze-mid': 'bg-amber-200 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300',
+  'bronze-high': 'bg-amber-300 text-amber-900 dark:bg-amber-900/40 dark:text-amber-200',
+  'silver-low': 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
+  'silver-mid': 'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200',
+  'silver-high': 'bg-gray-300 text-gray-900 dark:bg-gray-600 dark:text-gray-100',
+  'gold': 'bg-yellow-200 text-yellow-900 dark:bg-yellow-900/40 dark:text-yellow-200',
+};
 
 export function MatchCard({ match }: MatchCardProps) {
   const navigate = useNavigate();
@@ -20,6 +40,8 @@ export function MatchCard({ match }: MatchCardProps) {
   };
 
   const hasAvailableSpots = match.availableSpots > 0;
+  const skillLevelLabel = match.skillLevel ? SKILL_LEVEL_LABELS[match.skillLevel] : null;
+  const skillLevelColor = match.skillLevel ? SKILL_LEVEL_COLORS[match.skillLevel] : '';
 
   return (
     <Card
@@ -62,6 +84,14 @@ export function MatchCard({ match }: MatchCardProps) {
               </span>
             </div>
           </div>
+
+          {/* Skill Level */}
+          {skillLevelLabel && (
+            <div className={cn('inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium', skillLevelColor)}>
+              <Award className='h-3 w-3 md:h-4 md:w-4' />
+              <span>{skillLevelLabel}</span>
+            </div>
+          )}
 
           {/* Available Spots and My Match Badge */}
           <div className='flex items-center gap-2 md:gap-3 flex-wrap'>

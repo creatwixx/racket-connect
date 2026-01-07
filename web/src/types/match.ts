@@ -1,3 +1,12 @@
+export type SkillLevel = 
+  | 'bronze-low' 
+  | 'bronze-mid' 
+  | 'bronze-high'
+  | 'silver-low'
+  | 'silver-mid'
+  | 'silver-high'
+  | 'gold';
+
 export interface PadelMatch {
   id: string;
   clubName: string;
@@ -9,6 +18,8 @@ export interface PadelMatch {
   createdBy: string;
   createdAt: Date;
   joinedUsers: string[];
+  description?: string;
+  skillLevel?: SkillLevel;
 }
 
 export function hasUserJoined(match: PadelMatch, userId: string): boolean {

@@ -14,6 +14,8 @@ interface MatchState {
     startTime: Date;
     endTime: Date;
     totalSpots: number;
+    description?: string;
+    skillLevel?: string;
   }) => Promise<void>;
   joinMatch: (matchId: string) => Promise<void>;
   leaveMatch: (matchId: string) => Promise<void>;
@@ -55,7 +57,13 @@ export const useMatchStore = create<MatchState>((set, get) => ({
     try {
       const userId = authService.getCurrentUserId();
       await matchService.createMatch({
-        ...matchData,
+        clubName: matchData.clubName,
+        location: matchData.location,
+        startTime: matchData.startTime,
+        endTime: matchData.endTime,
+        totalSpots: matchData.totalSpots,
+        description: matchData.description,
+        skillLevel: matchData.skillLevel as any,
         createdBy: userId,
       });
       // Refresh matches list

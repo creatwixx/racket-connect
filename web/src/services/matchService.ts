@@ -42,6 +42,7 @@ class MatchService {
       createdBy: currentUserId,
       createdAt: new Date(now.getTime() - 1 * 60 * 60 * 1000),
       joinedUsers: [otherUser1], // One person already joined
+      skillLevel: 'silver-mid',
     });
 
     // Match 1: Tomorrow, 2 spots available (user can join)
@@ -56,6 +57,7 @@ class MatchService {
       createdBy: otherUser1,
       createdAt: new Date(now.getTime() - 2 * 60 * 60 * 1000),
       joinedUsers: [otherUser2], // One person already joined
+      skillLevel: 'bronze-high',
     });
 
     // Match 2: Tomorrow evening, 1 spot available (user can join)
@@ -70,6 +72,7 @@ class MatchService {
       createdBy: otherUser2,
       createdAt: new Date(now.getTime() - 5 * 60 * 60 * 1000),
       joinedUsers: [otherUser1, otherUser3], // Two people already joined
+      skillLevel: 'gold',
     });
 
     // Match 3: Day after tomorrow, 3 spots available (user can join)
@@ -84,6 +87,7 @@ class MatchService {
       createdBy: otherUser3,
       createdAt: new Date(now.getTime() - 1 * 60 * 60 * 1000),
       joinedUsers: [], // No one joined yet
+      skillLevel: 'bronze-low',
     });
 
     // Match 4: Next week, FULL (user cannot join)
@@ -98,6 +102,7 @@ class MatchService {
       createdBy: otherUser1,
       createdAt: new Date(now.getTime() - 24 * 60 * 60 * 1000),
       joinedUsers: [otherUser2, otherUser3, 'потребител_4'], // Three people joined
+      skillLevel: 'silver-high',
     });
 
     // Match 5: Tomorrow morning, 2 spots available (user can join)
@@ -112,6 +117,7 @@ class MatchService {
       createdBy: otherUser2,
       createdAt: new Date(now.getTime() - 3 * 60 * 60 * 1000),
       joinedUsers: [otherUser1], // One person already joined
+      skillLevel: 'silver-low',
     });
 
     this.dummyMatchesInitialized = true;
@@ -131,6 +137,8 @@ class MatchService {
     endTime,
     totalSpots,
     createdBy,
+    description,
+    skillLevel,
   }: {
     clubName: string;
     location: string;
@@ -138,6 +146,8 @@ class MatchService {
     endTime: Date;
     totalSpots: number;
     createdBy: string;
+    description?: string;
+    skillLevel?: string;
   }): Promise<PadelMatch> {
     // Creator automatically takes 1 spot, so available spots = totalSpots - 1
     const match: PadelMatch = {
@@ -151,6 +161,8 @@ class MatchService {
       createdBy,
       createdAt: new Date(),
       joinedUsers: [], // Creator is not in joinedUsers, they're tracked via createdBy
+      description,
+      skillLevel: skillLevel as any,
     };
 
     this.matches.push(match);
