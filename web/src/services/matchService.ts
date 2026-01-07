@@ -1,4 +1,4 @@
-import type { PadelMatch } from '../types/match';
+import type { PadelMatch, SkillLevel } from '../types/match';
 
 // Service for managing padel matches
 // For MVP, we'll use in-memory storage
@@ -24,7 +24,7 @@ class MatchService {
 
     // Current user ID (for "My Match")
     const currentUserId = 'dummy_user_123';
-    
+
     // Dummy user IDs - all are потребител
     const otherUser1 = 'потребител_1';
     const otherUser2 = 'потребител_2';
@@ -35,8 +35,20 @@ class MatchService {
       id: 'my_dummy_match',
       clubName: 'Padel Club Sofia',
       location: 'ул. Околовръстен път 72, София',
-      startTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 16, 0),
-      endTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 18, 0),
+      startTime: new Date(
+        tomorrow.getFullYear(),
+        tomorrow.getMonth(),
+        tomorrow.getDate(),
+        16,
+        0
+      ),
+      endTime: new Date(
+        tomorrow.getFullYear(),
+        tomorrow.getMonth(),
+        tomorrow.getDate(),
+        18,
+        0
+      ),
       totalSpots: 4,
       availableSpots: 2, // 1 creator (me) + 1 joined = 2 taken, 2 available
       createdBy: currentUserId,
@@ -50,8 +62,20 @@ class MatchService {
       id: 'dummy_match_1',
       clubName: 'Smash Padel',
       location: 'бул. Марица 15, Пловдив',
-      startTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 18, 0),
-      endTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 20, 0),
+      startTime: new Date(
+        tomorrow.getFullYear(),
+        tomorrow.getMonth(),
+        tomorrow.getDate(),
+        18,
+        0
+      ),
+      endTime: new Date(
+        tomorrow.getFullYear(),
+        tomorrow.getMonth(),
+        tomorrow.getDate(),
+        20,
+        0
+      ),
       totalSpots: 4,
       availableSpots: 2, // 1 creator + 1 joined = 2 taken, 2 available
       createdBy: otherUser1,
@@ -65,8 +89,20 @@ class MatchService {
       id: 'dummy_match_2',
       clubName: 'Padel Arena Varna',
       location: 'ул. Приморска 25, Варна',
-      startTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 19, 30),
-      endTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 21, 30),
+      startTime: new Date(
+        tomorrow.getFullYear(),
+        tomorrow.getMonth(),
+        tomorrow.getDate(),
+        19,
+        30
+      ),
+      endTime: new Date(
+        tomorrow.getFullYear(),
+        tomorrow.getMonth(),
+        tomorrow.getDate(),
+        21,
+        30
+      ),
       totalSpots: 4,
       availableSpots: 1, // 1 creator + 2 joined = 3 taken, 1 available
       createdBy: otherUser2,
@@ -80,8 +116,20 @@ class MatchService {
       id: 'dummy_match_3',
       clubName: 'Padel Club Burgas',
       location: 'ул. Александровска 18, Бургас',
-      startTime: new Date(dayAfterTomorrow.getFullYear(), dayAfterTomorrow.getMonth(), dayAfterTomorrow.getDate(), 17, 0),
-      endTime: new Date(dayAfterTomorrow.getFullYear(), dayAfterTomorrow.getMonth(), dayAfterTomorrow.getDate(), 19, 0),
+      startTime: new Date(
+        dayAfterTomorrow.getFullYear(),
+        dayAfterTomorrow.getMonth(),
+        dayAfterTomorrow.getDate(),
+        17,
+        0
+      ),
+      endTime: new Date(
+        dayAfterTomorrow.getFullYear(),
+        dayAfterTomorrow.getMonth(),
+        dayAfterTomorrow.getDate(),
+        19,
+        0
+      ),
       totalSpots: 4,
       availableSpots: 3, // Only creator, no one joined yet
       createdBy: otherUser3,
@@ -93,10 +141,22 @@ class MatchService {
     // Match 4: Next week, FULL (user cannot join)
     this.matches.push({
       id: 'dummy_match_4',
-      clubName: 'Padel',
+      clubName: 'Just Padel Varna',
       location: 'ул. Славянска 12, Варна',
-      startTime: new Date(nextWeek.getFullYear(), nextWeek.getMonth(), nextWeek.getDate(), 18, 30),
-      endTime: new Date(nextWeek.getFullYear(), nextWeek.getMonth(), nextWeek.getDate(), 20, 30),
+      startTime: new Date(
+        nextWeek.getFullYear(),
+        nextWeek.getMonth(),
+        nextWeek.getDate(),
+        18,
+        30
+      ),
+      endTime: new Date(
+        nextWeek.getFullYear(),
+        nextWeek.getMonth(),
+        nextWeek.getDate(),
+        20,
+        30
+      ),
       totalSpots: 4,
       availableSpots: 0, // Full - creator + 3 joined
       createdBy: otherUser1,
@@ -110,8 +170,20 @@ class MatchService {
       id: 'dummy_match_5',
       clubName: 'Padel Club Stara Zagora',
       location: 'бул. Руски 8, Стара Загора',
-      startTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 10, 0),
-      endTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 12, 0),
+      startTime: new Date(
+        tomorrow.getFullYear(),
+        tomorrow.getMonth(),
+        tomorrow.getDate(),
+        10,
+        0
+      ),
+      endTime: new Date(
+        tomorrow.getFullYear(),
+        tomorrow.getMonth(),
+        tomorrow.getDate(),
+        12,
+        0
+      ),
       totalSpots: 4,
       availableSpots: 2, // 1 creator + 1 joined = 2 taken, 2 available
       createdBy: otherUser2,
@@ -147,7 +219,7 @@ class MatchService {
     totalSpots: number;
     createdBy: string;
     description?: string;
-    skillLevel?: string;
+    skillLevel?: SkillLevel;
   }): Promise<PadelMatch> {
     // Creator automatically takes 1 spot, so available spots = totalSpots - 1
     const match: PadelMatch = {
@@ -162,7 +234,7 @@ class MatchService {
       createdAt: new Date(),
       joinedUsers: [], // Creator is not in joinedUsers, they're tracked via createdBy
       description,
-      skillLevel: skillLevel as any,
+      skillLevel,
     };
 
     this.matches.push(match);
@@ -175,22 +247,24 @@ class MatchService {
     this.initializeDummyMatches();
 
     // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     // Return sorted by start time (earliest first)
-    return [...this.matches].sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
+    return [...this.matches].sort(
+      (a, b) => a.startTime.getTime() - b.startTime.getTime()
+    );
   }
 
   // Get match by ID
   async getMatchById(id: string): Promise<PadelMatch | null> {
-    await new Promise(resolve => setTimeout(resolve, 200));
-    return this.matches.find(match => match.id === id) || null;
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    return this.matches.find((match) => match.id === id) || null;
   }
 
   // Join a match (reduce available spots and add user to joined list)
   async joinMatch(matchId: string, userId: string): Promise<boolean> {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    const index = this.matches.findIndex(match => match.id === matchId);
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    const index = this.matches.findIndex((match) => match.id === matchId);
     if (index !== -1) {
       const match = this.matches[index];
       // Check if user already joined or is the creator
@@ -213,8 +287,8 @@ class MatchService {
 
   // Leave a match (increase available spots and remove user from joined list)
   async leaveMatch(matchId: string, userId: string): Promise<boolean> {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    const index = this.matches.findIndex(match => match.id === matchId);
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    const index = this.matches.findIndex((match) => match.id === matchId);
     if (index !== -1) {
       const match = this.matches[index];
       // Creator cannot leave their own match
@@ -223,7 +297,9 @@ class MatchService {
       }
       // Check if user is in the joined list
       if (match.joinedUsers.includes(userId)) {
-        const updatedJoinedUsers = match.joinedUsers.filter(id => id !== userId);
+        const updatedJoinedUsers = match.joinedUsers.filter(
+          (id) => id !== userId
+        );
         this.matches[index] = {
           ...match,
           availableSpots: match.availableSpots + 1,
@@ -237,4 +313,3 @@ class MatchService {
 }
 
 export const matchService = new MatchService();
-
