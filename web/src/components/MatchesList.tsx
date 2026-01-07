@@ -57,7 +57,6 @@ export function MatchesList() {
 
     // Filter by time range
     if (timeRange) {
-      const now = new Date();
       const [hours] = timeRange.split(':').map(Number);
       filtered = filtered.filter(match => {
         const matchHour = match.startTime.getHours();
