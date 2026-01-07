@@ -75,12 +75,12 @@ export function MatchCard({ match }: MatchCardProps) {
             >
               <Users className='h-4 w-4 md:h-5 md:w-5' />
               <span>
-                {match.availableSpots}/{match.totalSpots - 1} spots
+                {match.availableSpots}/{match.totalSpots - 1} места
               </span>
             </div>
             {isMyMatch && (
               <div className='inline-flex items-center px-4 py-2 md:px-5 md:py-2.5 rounded-full text-sm md:text-base font-semibold bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-sm'>
-                My Match
+                Моят мач
               </div>
             )}
           </div>

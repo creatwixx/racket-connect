@@ -46,7 +46,7 @@ export const useMatchStore = create<MatchState>((set, get) => ({
       
       set({ matches: sortedMatches, loading: false });
     } catch (error) {
-      set({ error: error instanceof Error ? error.message : 'Failed to load matches', loading: false });
+      set({ error: error instanceof Error ? error.message : 'Неуспешно зареждане на мачовете', loading: false });
     }
   },
 
@@ -62,7 +62,7 @@ export const useMatchStore = create<MatchState>((set, get) => ({
       await get().fetchMatches();
       set({ loading: false });
     } catch (error) {
-      set({ error: error instanceof Error ? error.message : 'Failed to create match', loading: false });
+      set({ error: error instanceof Error ? error.message : 'Неуспешно създаване на мач', loading: false });
       throw error;
     }
   },
@@ -73,13 +73,13 @@ export const useMatchStore = create<MatchState>((set, get) => ({
       const userId = authService.getCurrentUserId();
       const success = await matchService.joinMatch(matchId, userId);
       if (!success) {
-        throw new Error('Unable to join match. It may be full or you may already be joined.');
+        throw new Error('Не може да се присъедините към мача. Може да е пълен или вече сте присъединени.');
       }
       // Refresh matches list
       await get().fetchMatches();
       set({ loading: false });
     } catch (error) {
-      set({ error: error instanceof Error ? error.message : 'Failed to join match', loading: false });
+      set({ error: error instanceof Error ? error.message : 'Неуспешно присъединяване към мача', loading: false });
       throw error;
     }
   },
@@ -90,13 +90,13 @@ export const useMatchStore = create<MatchState>((set, get) => ({
       const userId = authService.getCurrentUserId();
       const success = await matchService.leaveMatch(matchId, userId);
       if (!success) {
-        throw new Error('Unable to leave match.');
+        throw new Error('Не може да напуснете мача.');
       }
       // Refresh matches list
       await get().fetchMatches();
       set({ loading: false });
     } catch (error) {
-      set({ error: error instanceof Error ? error.message : 'Failed to leave match', loading: false });
+      set({ error: error instanceof Error ? error.message : 'Неуспешно напускане на мача', loading: false });
       throw error;
     }
   },
@@ -105,7 +105,7 @@ export const useMatchStore = create<MatchState>((set, get) => ({
     try {
       return await matchService.getMatchById(matchId);
     } catch (error) {
-      set({ error: error instanceof Error ? error.message : 'Failed to load match' });
+      set({ error: error instanceof Error ? error.message : 'Неуспешно зареждане на мача' });
       return null;
     }
   },

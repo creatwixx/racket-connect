@@ -29,7 +29,7 @@ export function LoginScreen() {
       // Navigate to home
       navigate('/home');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed');
+      setError(err instanceof Error ? err.message : 'Влизането не бе успешно');
     } finally {
       setLoading(false);
     }
@@ -44,13 +44,13 @@ export function LoginScreen() {
               Racket Connect
             </CardTitle>
             <CardDescription className="text-green-50 text-base md:text-lg mt-2">
-              Sign in to find your next padel match
+              Влезте, за да намерите следващия си педел мач
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 md:space-y-6">
             {/* Email Input */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Имейл</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
                 <Input
@@ -58,7 +58,7 @@ export function LoginScreen() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder="Въведете вашия имейл"
                   className="pl-10 md:pl-12"
                   required
                 />
@@ -67,7 +67,7 @@ export function LoginScreen() {
 
             {/* Password Input */}
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Парола</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
                 <Input
@@ -75,7 +75,7 @@ export function LoginScreen() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
+                  placeholder="Въведете вашата парола"
                   className="pl-10 md:pl-12"
                   required
                 />
@@ -96,7 +96,7 @@ export function LoginScreen() {
               className="w-full h-12 md:h-14 text-base md:text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold shadow-lg"
               size="lg"
             >
-              {loading ? 'Signing in...' : 'Sign In'}
+              {loading ? 'Влизане...' : 'Влез'}
             </Button>
 
             {/* Divider */}
@@ -106,7 +106,7 @@ export function LoginScreen() {
               </div>
               <div className="relative flex justify-center text-xs md:text-sm uppercase">
                 <span className="bg-card px-2 md:px-4 text-muted-foreground">
-                  Or continue with
+                  Или продължете с
                 </span>
               </div>
             </div>
@@ -139,7 +139,7 @@ export function LoginScreen() {
             {/* Demo Note */}
             <div className="text-center">
               <p className="text-xs md:text-sm text-muted-foreground">
-                Demo mode: Credentials are pre-filled
+                Демо режим: Данните са предварително попълнени
               </p>
             </div>
           </CardContent>

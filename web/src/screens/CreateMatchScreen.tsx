@@ -8,11 +8,15 @@ import { Label } from '../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 
 const SAMPLE_CLUBS = [
-  'Padel Club Barcelona',
-  'Madrid Padel Center',
-  'Valencia Padel Club',
-  'Seville Sports Club',
-  'Bilbao Padel Arena',
+  'Padel Club Sofia',
+  'Padel Club AYA',
+  'Padel DECATHLON | Падел кортове Витоша',
+  'Amik Sport',
+  'Smash Padel',
+  'Padel Arena Varna',
+  'Padel',
+  'Padel Club Burgas',
+  'Padel Club Stara Zagora',
 ];
 
 export function CreateMatchScreen() {
@@ -30,30 +34,30 @@ export function CreateMatchScreen() {
     const newErrors: Record<string, string> = {};
 
     if (!clubName.trim()) {
-      newErrors.clubName = 'Please select a club';
+      newErrors.clubName = 'Моля, изберете клуб';
     }
     if (!location.trim()) {
-      newErrors.location = 'Please enter location';
+      newErrors.location = 'Моля, въведете локация';
     }
     if (!selectedDate) {
-      newErrors.date = 'Please select a date';
+      newErrors.date = 'Моля, изберете дата';
     }
     if (!startTime) {
-      newErrors.startTime = 'Please select start time';
+      newErrors.startTime = 'Моля, изберете начален час';
     }
     if (!endTime) {
-      newErrors.endTime = 'Please select end time';
+      newErrors.endTime = 'Моля, изберете краен час';
     }
     if (startTime && endTime) {
       const start = new Date(`${selectedDate}T${startTime}`);
       const end = new Date(`${selectedDate}T${endTime}`);
       if (end <= start) {
-        newErrors.endTime = 'End time must be after start time';
+        newErrors.endTime = 'Краят трябва да е след началото';
       }
     }
     const spots = parseInt(totalSpots);
     if (!totalSpots || isNaN(spots) || spots < 1) {
-      newErrors.totalSpots = 'Please enter a valid number (min 1)';
+      newErrors.totalSpots = 'Моля, въведете валидно число (мин. 1)';
     }
 
     setErrors(newErrors);
@@ -105,7 +109,7 @@ export function CreateMatchScreen() {
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <h1 className="text-xl md:text-2xl xl:text-3xl font-bold text-white drop-shadow-sm">
-              Create Padel Match
+              Създай педел мач
             </h1>
           </div>
         </div>
@@ -115,13 +119,13 @@ export function CreateMatchScreen() {
       <main className="container mx-auto px-4 md:px-6 xl:px-8 py-4 md:py-6 xl:py-8 max-w-2xl">
         <Card>
           <CardHeader>
-            <CardTitle>Match Details</CardTitle>
+            <CardTitle>Детайли за мача</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               {/* Club Name Dropdown */}
               <div className="space-y-2">
-                <Label htmlFor="club">Padel Club</Label>
+                <Label htmlFor="club">Педел клуб</Label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
                   {SAMPLE_CLUBS.map((club) => (
                     <Button
@@ -143,15 +147,16 @@ export function CreateMatchScreen() {
 
               {/* Location */}
               <div className="space-y-2">
-                <Label htmlFor="location">Location</Label>
+                <Label htmlFor="location">Локация</Label>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
                   <Input
                     id="location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    placeholder="Enter club address"
+                    placeholder="Въведете адрес на клуба"
                     className="pl-10 md:pl-12"
+                    readOnly
                   />
                 </div>
                 {errors.location && (
@@ -161,7 +166,7 @@ export function CreateMatchScreen() {
 
               {/* Date */}
               <div className="space-y-2">
-                <Label htmlFor="date">Date</Label>
+                <Label htmlFor="date">Дата</Label>
                 <div className="relative">
                   <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
                   <Input
@@ -180,7 +185,7 @@ export function CreateMatchScreen() {
 
               {/* Start Time */}
               <div className="space-y-2">
-                <Label htmlFor="startTime">Start Time</Label>
+                <Label htmlFor="startTime">Начален час</Label>
                 <div className="relative">
                   <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
                   <Input
@@ -198,7 +203,7 @@ export function CreateMatchScreen() {
 
               {/* End Time */}
               <div className="space-y-2">
-                <Label htmlFor="endTime">End Time</Label>
+                <Label htmlFor="endTime">Краен час</Label>
                 <div className="relative">
                   <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
                   <Input
@@ -216,7 +221,7 @@ export function CreateMatchScreen() {
 
               {/* Total Spots */}
               <div className="space-y-2">
-                <Label htmlFor="totalSpots">Total Spots</Label>
+                <Label htmlFor="totalSpots">Общо места</Label>
                 <div className="relative">
                   <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
                   <Input
@@ -224,7 +229,7 @@ export function CreateMatchScreen() {
                     type="number"
                     value={totalSpots}
                     onChange={(e) => setTotalSpots(e.target.value)}
-                    placeholder="Number of players needed"
+                    placeholder="Брой необходими играчи"
                     min="1"
                     className="pl-10 md:pl-12"
                   />
@@ -241,7 +246,7 @@ export function CreateMatchScreen() {
                 className="w-full h-12 md:h-14 text-base md:text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold shadow-lg"
                 size="lg"
               >
-                {loading ? 'Creating...' : 'Create Match'}
+                {loading ? 'Създаване...' : 'Създай мач'}
               </Button>
             </form>
           </CardContent>

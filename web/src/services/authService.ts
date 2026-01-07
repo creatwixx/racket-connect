@@ -2,7 +2,7 @@
 // For MVP, we'll use a simple dummy user
 export class AuthService {
   static readonly DUMMY_USER_ID = 'dummy_user_123';
-  static readonly DUMMY_USER_NAME = 'Dummy User';
+  static readonly DUMMY_USER_NAME = 'потребител';
   static readonly DUMMY_USER_EMAIL = 'dummy@padelconnect.com';
   private static readonly AUTH_KEY = 'racket_connect_auth';
 

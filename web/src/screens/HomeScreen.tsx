@@ -64,7 +64,7 @@ export function HomeScreen() {
               >
                 <div className='flex items-center gap-2 md:gap-3'>
                   <LogOut className='h-4 w-4 md:h-5 md:w-5' />
-                  <span className='text-sm md:text-base'>Logout</span>
+                  <span className='text-sm md:text-base'>Изход</span>
                 </div>
               </DropdownMenuItem>
             </DropdownMenu>
@@ -84,8 +84,8 @@ export function HomeScreen() {
         size='lg'
       >
         <Plus className='h-6 w-6 md:h-7 md:w-7' />
-        <span className='hidden sm:inline'>Create Match</span>
-        <span className='sm:hidden'>Create</span>
+        <span className='hidden sm:inline'>Създай мач</span>
+        <span className='sm:hidden'>Създай</span>
       </Button>
     </div>
   );

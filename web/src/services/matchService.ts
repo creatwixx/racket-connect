@@ -25,16 +25,16 @@ class MatchService {
     // Current user ID (for "My Match")
     const currentUserId = 'dummy_user_123';
     
-    // Dummy user IDs (different from the current user)
-    const otherUser1 = 'user_alex_456';
-    const otherUser2 = 'user_maria_789';
-    const otherUser3 = 'user_carlos_012';
+    // Dummy user IDs - all are потребител
+    const otherUser1 = 'потребител_1';
+    const otherUser2 = 'потребител_2';
+    const otherUser3 = 'потребител_3';
 
     // My Match: Tomorrow afternoon, 2 spots available (created by current user)
     this.matches.push({
       id: 'my_dummy_match',
-      clubName: 'Premium Padel Club',
-      location: 'Calle del Padel, 100, Madrid',
+      clubName: 'Padel Club Sofia',
+      location: 'ул. Околовръстен път 72, София',
       startTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 16, 0),
       endTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 18, 0),
       totalSpots: 4,
@@ -47,8 +47,8 @@ class MatchService {
     // Match 1: Tomorrow, 2 spots available (user can join)
     this.matches.push({
       id: 'dummy_match_1',
-      clubName: 'Padel Club Barcelona',
-      location: 'Carrer de la Marina, 123, Barcelona',
+      clubName: 'Smash Padel',
+      location: 'бул. Марица 15, Пловдив',
       startTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 18, 0),
       endTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 20, 0),
       totalSpots: 4,
@@ -61,8 +61,8 @@ class MatchService {
     // Match 2: Tomorrow evening, 1 spot available (user can join)
     this.matches.push({
       id: 'dummy_match_2',
-      clubName: 'Madrid Padel Center',
-      location: 'Avenida de la Paz, 45, Madrid',
+      clubName: 'Padel Arena Varna',
+      location: 'ул. Приморска 25, Варна',
       startTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 19, 30),
       endTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 21, 30),
       totalSpots: 4,
@@ -75,8 +75,8 @@ class MatchService {
     // Match 3: Day after tomorrow, 3 spots available (user can join)
     this.matches.push({
       id: 'dummy_match_3',
-      clubName: 'Valencia Padel Club',
-      location: 'Calle del Deporte, 78, Valencia',
+      clubName: 'Padel Club Burgas',
+      location: 'ул. Александровска 18, Бургас',
       startTime: new Date(dayAfterTomorrow.getFullYear(), dayAfterTomorrow.getMonth(), dayAfterTomorrow.getDate(), 17, 0),
       endTime: new Date(dayAfterTomorrow.getFullYear(), dayAfterTomorrow.getMonth(), dayAfterTomorrow.getDate(), 19, 0),
       totalSpots: 4,
@@ -89,22 +89,22 @@ class MatchService {
     // Match 4: Next week, FULL (user cannot join)
     this.matches.push({
       id: 'dummy_match_4',
-      clubName: 'Seville Sports Club',
-      location: 'Plaza del Deporte, 12, Seville',
+      clubName: 'Padel',
+      location: 'ул. Славянска 12, Варна',
       startTime: new Date(nextWeek.getFullYear(), nextWeek.getMonth(), nextWeek.getDate(), 18, 30),
       endTime: new Date(nextWeek.getFullYear(), nextWeek.getMonth(), nextWeek.getDate(), 20, 30),
       totalSpots: 4,
       availableSpots: 0, // Full - creator + 3 joined
       createdBy: otherUser1,
       createdAt: new Date(now.getTime() - 24 * 60 * 60 * 1000),
-      joinedUsers: [otherUser2, otherUser3, 'user_extra_345'], // Three people joined
+      joinedUsers: [otherUser2, otherUser3, 'потребител_4'], // Three people joined
     });
 
     // Match 5: Tomorrow morning, 2 spots available (user can join)
     this.matches.push({
       id: 'dummy_match_5',
-      clubName: 'Bilbao Padel Arena',
-      location: 'Avenida del Deporte, 56, Bilbao',
+      clubName: 'Padel Club Stara Zagora',
+      location: 'бул. Руски 8, Стара Загора',
       startTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 10, 0),
       endTime: new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 12, 0),
       totalSpots: 4,

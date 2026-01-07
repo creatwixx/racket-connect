@@ -31,10 +31,10 @@ export function MatchDetailScreen() {
         const loadedMatch = await getMatchById(matchId);
         setMatch(loadedMatch);
         if (!loadedMatch) {
-          setError('Match not found');
+          setError('Мачът не е намерен');
         }
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load match');
+        setError(err instanceof Error ? err.message : 'Неуспешно зареждане на мача');
       } finally {
         setMatchLoading(false);
       }
@@ -95,15 +95,15 @@ export function MatchDetailScreen() {
               >
                 <ArrowLeft className="h-5 w-5" />
               </Button>
-              <h1 className="text-xl md:text-2xl xl:text-3xl font-bold text-white drop-shadow-sm">Match Details</h1>
+              <h1 className="text-xl md:text-2xl xl:text-3xl font-bold text-white drop-shadow-sm">Детайли за мача</h1>
             </div>
           </div>
         </header>
         <main className="container mx-auto px-4 md:px-6 xl:px-8 py-8 md:py-12">
           <div className="flex flex-col items-center justify-center gap-4">
             <AlertCircle className="h-12 w-12 md:h-16 md:w-16 text-destructive" />
-            <h2 className="text-xl md:text-2xl font-semibold">Match not found</h2>
-            <Button onClick={() => navigate('/home')}>Go Home</Button>
+            <h2 className="text-xl md:text-2xl font-semibold">Мачът не е намерен</h2>
+            <Button onClick={() => navigate('/home')}>Към началото</Button>
           </div>
         </main>
       </div>
@@ -177,7 +177,7 @@ export function MatchDetailScreen() {
                 >
                   <Users className="h-5 w-5 md:h-6 md:w-6" />
                   <span>
-                    {match.availableSpots}/{match.totalSpots - 1} spots available
+                    {match.availableSpots}/{match.totalSpots - 1} свободни места
                   </span>
                 </div>
               </CardContent>
@@ -190,7 +190,7 @@ export function MatchDetailScreen() {
                   <div className="flex items-center justify-center gap-2 md:gap-3">
                     <User className="h-5 w-5 md:h-6 md:w-6 text-blue-600" />
                     <p className="text-base md:text-lg font-medium text-blue-700 dark:text-blue-400">
-                      You created this match
+                      Вие created this match
                     </p>
                   </div>
                 </div>
@@ -206,16 +206,16 @@ export function MatchDetailScreen() {
                   size="lg"
                 >
                   {actionLoading ? (
-                    'Loading...'
+                    'Зареждане...'
                   ) : userHasJoined ? (
                     <>
                       <UserMinus className="h-5 w-5 md:h-6 md:w-6 mr-2" />
-                      Leave Match
+                      Напусни мача
                     </>
                   ) : (
                     <>
                       <UserPlus className="h-5 w-5 md:h-6 md:w-6 mr-2" />
-                      Join Match
+                      Присъедини се
                     </>
                   )}
                 </Button>
@@ -227,7 +227,7 @@ export function MatchDetailScreen() {
           <div className="space-y-4 md:space-y-6">
             <Card className="h-fit">
               <CardHeader>
-                <CardTitle className="text-lg md:text-xl xl:text-2xl">Participants</CardTitle>
+                <CardTitle className="text-lg md:text-xl xl:text-2xl">Участници</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 md:space-y-4">
                 {/* Creator */}
@@ -236,14 +236,14 @@ export function MatchDetailScreen() {
                     <User className="h-5 w-5 md:h-6 md:w-6 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-base md:text-lg">Match Creator</p>
+                    <p className="font-semibold text-base md:text-lg">Създател на мача</p>
                     <p className="text-sm md:text-base text-muted-foreground">
-                      {isCreator ? `You (${currentUserName})` : 'Another player'}
+                      {isCreator ? `Вие (${currentUserName})` : 'Друг играч'}
                     </p>
                   </div>
                   {isCreator && (
                     <span className="px-3 py-1 text-xs md:text-sm font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 rounded-full">
-                      You
+                      Вие
                     </span>
                   )}
                 </div>
@@ -251,7 +251,7 @@ export function MatchDetailScreen() {
                 {/* Joined Users */}
                 {match.joinedUsers.length === 0 ? (
                   <div className="p-4 md:p-6 text-center text-muted-foreground">
-                    <p className="text-sm md:text-base">No one has joined yet</p>
+                    <p className="text-sm md:text-base">Още никой не се е присъединил</p>
                   </div>
                 ) : (
                   match.joinedUsers.map((userId) => {
@@ -270,15 +270,15 @@ export function MatchDetailScreen() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="font-medium text-base md:text-lg">
-                            {isCurrentUser ? 'You' : 'Player'}
+                            {isCurrentUser ? 'Вие' : 'Играч'}
                           </p>
                           <p className="text-sm md:text-base text-muted-foreground">
-                            {isCurrentUser ? currentUserName : 'Joined player'}
+                            {isCurrentUser ? currentUserName : 'потребител'}
                           </p>
                         </div>
                         {isCurrentUser && (
                           <span className="px-3 py-1 text-xs md:text-sm font-medium bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400 rounded-full">
-                            You
+                            Вие
                           </span>
                         )}
                       </div>
@@ -295,7 +295,7 @@ export function MatchDetailScreen() {
                   <div className="flex items-center justify-center gap-2 md:gap-3">
                     <User className="h-5 w-5 md:h-6 md:w-6 text-blue-600" />
                     <p className="text-base md:text-lg font-medium text-blue-700 dark:text-blue-400">
-                      You created this match
+                      Вие created this match
                     </p>
                   </div>
                 </div>
@@ -311,16 +311,16 @@ export function MatchDetailScreen() {
                   size="lg"
                 >
                   {actionLoading ? (
-                    'Loading...'
+                    'Зареждане...'
                   ) : userHasJoined ? (
                     <>
                       <UserMinus className="h-5 w-5 md:h-6 md:w-6 mr-2" />
-                      Leave Match
+                      Напусни мача
                     </>
                   ) : (
                     <>
                       <UserPlus className="h-5 w-5 md:h-6 md:w-6 mr-2" />
-                      Join Match
+                      Присъедини се
                     </>
                   )}
                 </Button>
