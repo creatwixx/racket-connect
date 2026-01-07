@@ -295,7 +295,7 @@ export function MatchDetailScreen() {
                   <div className="flex items-center justify-center gap-2 md:gap-3">
                     <User className="h-5 w-5 md:h-6 md:w-6 text-blue-600" />
                     <p className="text-base md:text-lg font-medium text-blue-700 dark:text-blue-400">
-                      Вие created this match
+                      Вие създадохте този мач
                     </p>
                   </div>
                 </div>
